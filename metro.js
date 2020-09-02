@@ -71,7 +71,7 @@ $().ready(function () {
             .each("end", function () {
                 // load pseudo url to catch from webview url
                 //                window.location.href = "http://pseudo/"+stationId;
-                onSelect.postMessage(stationId);
+                callFlutter(attrClass);
                 $(this).remove();
             });
     }
