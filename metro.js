@@ -1,11 +1,4 @@
-class MetroSelector {
-    performClick(test) {
-        console.log(test);
-    }
 
-}
-
-var selectMetro = new MetroSelector();
 
 $().ready(function () {
 
@@ -77,7 +70,7 @@ $().ready(function () {
             .each("end", function () {
                 // load pseudo url to catch from webview url
                 //                window.location.href = "http://pseudo/"+stationId;
-                selectMetro.performClick(stationId);
+                onSelect.postMessage(stationId);
                 $(this).remove();
             });
     }
