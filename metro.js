@@ -31,7 +31,8 @@ $().ready(function () {
         // find id station
         var match = attrClass.match(/station_(\d+)/i)
         if (match) {
-            selectMetro.performClick(attrClass);
+            callFlutter(attrClass);
+            //selectMetro.performClick(attrClass);
             //            // animate circle
             //            animateCircleClick(this.getBBox(), attrClass);
             //            // animate text select
