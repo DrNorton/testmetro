@@ -71,6 +71,7 @@ $().ready(function () {
                 // load pseudo url to catch from webview url
                 //                window.location.href = "http://pseudo/"+stationId;
                 onSelect.postMessage(stationId);
+                alert(stationId);
                 $(this).remove();
             });
     }
