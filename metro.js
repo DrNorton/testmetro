@@ -4,6 +4,9 @@ $().ready(function () {
 
     // find svg in dom
     var svgContainer = d3.select("body").select("svg");
+    debugger;
+    $("#ui_combo_bodies_all_2811").remove();
+    $("#cmbBody_crutch").remove();
 
     /**
      * get class from foreach station and add box rect, that
