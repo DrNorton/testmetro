@@ -1,10 +1,8 @@
 
 
 $().ready(function () {
-
     // find svg in dom
     var svgContainer = d3.select("body").select("svg");
-    debugger;
     $("#ui_combo_bodies_all_2811").remove();
     $("#cmbBody_crutch").remove();
 
@@ -78,5 +76,40 @@ $().ready(function () {
                 $(this).remove();
             });
     }
+    const w = $('#scheme-metro').width();
+    const s = w - w / 2
+    $('body').scrollLeft(200);
+    const r = $('#scheme-metro').position()
+    console.log(r)
 
+    /**
+ * jQuery function to scroll the viewport middle to the element.
+ */
+    $.fn.scrollToMiddle = function (options) {
+        var settings = $.extend({
+            duration: 1000
+        }, options);
+
+        return this.each(function () {
+            var $el = $(this);
+            var elOffset = $el.offset().left;
+            var elHeight = $el.width();
+            var windowHeight = $(window).width();
+            var offset;
+            if (elHeight < windowHeight) {
+                offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+            }
+            else {
+                offset = elOffset;
+            }
+            $('html, body').animate({
+                scrollLeft: 300
+            }, settings.duration);
+        });
+    };
+
+
+    $('#scheme-metro').scrollToMiddle({ duration: 500 });
 });
+
+
