@@ -27,6 +27,7 @@ $().ready(function () {
             .attr("x", bbox.x)
             .attr("y", bbox.y - (bbox.height / 3))
             .attr("width", bbox.width)
+            .attr("id", $(this).attr("id"))
             .attr("height", bbox.height + (bbox.height / 1.7))
             .attr("class", $(this).attr("class") + " line_rect")
             .style("fill", "transparent");
@@ -57,10 +58,10 @@ $().ready(function () {
   * Click on rect and catch id station
   */
     d3.selectAll(".line_rect").on("click", function (d, i) {
-        var attrClass = $(this).attr("class");
+        var id = $(this).attr("id");
         //console.log(attrClass);
         // find id station
-        onLineSelectFlutter(attrClass);
+        onLineSelectFlutter(id);
         // var match = attrClass.match(/station_(\d+)/i)
         // if (match) {
         //     callFlutter(attrClass);
