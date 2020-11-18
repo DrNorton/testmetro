@@ -21,6 +21,17 @@ $().ready(function () {
             .style("fill", "transparent");
     });
 
+    d3.selectAll("[id*='line-']").each(function () {
+        var bbox = this.getBBox();
+        var rectangle = svgContainer.append("rect")
+            .attr("x", bbox.x)
+            .attr("y", bbox.y - (bbox.height / 3))
+            .attr("width", bbox.width)
+            .attr("height", bbox.height + (bbox.height / 1.7))
+            .attr("class", $(this).attr("class") + " line_rect")
+            .style("fill", "transparent");
+    });
+
 
 
     /**
@@ -32,13 +43,33 @@ $().ready(function () {
         // find id station
         var match = attrClass.match(/station_(\d+)/i)
         if (match) {
-            callFlutter(attrClass);
+            onStationSelectFlutter(attrClass);
             //selectMetro.performClick(attrClass);
             //            // animate circle
             //            animateCircleClick(this.getBBox(), attrClass);
             //            // animate text select
             //            animateTextSelect("."+match[0])
         }
+        return false;
+    });
+
+    /**
+  * Click on rect and catch id station
+  */
+    d3.selectAll(".line_rect").on("click", function (d, i) {
+        var attrClass = $(this).attr("class");
+        //console.log(attrClass);
+        // find id station
+        onLineSelectFlutter(attrClass);
+        // var match = attrClass.match(/station_(\d+)/i)
+        // if (match) {
+        //     callFlutter(attrClass);
+        //     //selectMetro.performClick(attrClass);
+        //     //            // animate circle
+        //     //            animateCircleClick(this.getBBox(), attrClass);
+        //     //            // animate text select
+        //     //            animateTextSelect("."+match[0])
+        // }
         return false;
     });
 
@@ -57,25 +88,7 @@ $().ready(function () {
             });
     }
 
-    function animateCircleClick(bbox, stationId) {
-        var circle = svgContainer.append("circle")
-            .attr("cx", bbox.x + (bbox.width / 2))
-            .attr("cy", bbox.y + (bbox.height / 2))
-            .attr("r", 0)
-            .style("opacity", .5)
-            .style("fill", "steelblue")
-            // animation circle
-            .transition()
-            .duration(300)
-            .attr("r", 55)
-            .style("opacity", 0)
-            .each("end", function () {
-                // load pseudo url to catch from webview url
-                //                window.location.href = "http://pseudo/"+stationId;
-                callFlutter(attrClass);
-                $(this).remove();
-            });
-    }
+
     const w = $('#scheme-metro').width();
     const s = w - w / 2
     $('body').scrollLeft(200);
